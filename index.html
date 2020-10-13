@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+    <script src="thePrice.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="theOrderPopup">
+        <div id="infoPopup">
+            <h1>En order har gjorts!</h1>
+            <h3>en order har blivit gjord och uppgifterna hittar du nedanför!</h3>
+        </div>
+        <div id="inputPopup">
+            <div>
+                <div>
+                    <div>
+                        <label>Storlek</label>
+                        <p id="sizeOutput">0</p>
+                    </div>
+
+                    <div>
+                        <label>Antal</label>
+                        <p id="amountOutput">0</p>
+                    </div>
+            
+                </div>
+
+                <div>
+                    <div>
+                        <p>Baspris</p>
+                        <p id="basepriceOutput">0</p>
+                    </div>
+                    <div>
+                        <p>Frakt pris</p>
+                        <p id="delieveryPriceOutput">0</p>
+                    </div>
+                    <div>
+                        <p>Tillägg pris</p>
+                        <p id="addonPriceOutput">0</p>
+                    </div>
+                </div>
+
+                <div>
+                        <h3>Total Summa</h3>
+                        <h3 id="totalPriceOutput">0</h3>
+                </div>    
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <label>Förnamn</label>
+                        <p id="firstNameOutput">0</p>
+                    </div>
+
+                    <div>
+                        <label>Efternamn</label>
+                        <p id="lastNameOutput">0</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p>Adress</p>
+                        <p id="adressOutput">0</p>
+                    </div>
+            
+                    <div>
+                        <p>Ort</p>
+                        <p id="ortOutput">0</p>
+                    </div>
+
+                    <div>
+                        <p>Postnummer</p>
+                        <p id="postnumberOutput">0</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p>E-post</p>
+                        <p id="emailOutput">0</p>
+                    </div>
+                    <div>
+                        <p>Mobilnummer</p>
+                        <p id="mobileOutput">0</p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <button onclick="removePopup()">Okej</button>
+
+
+    </div>
+    <main>
+        <div id="pictureUploadDiv">
+            <label for="uploadPictureButton">Ladda upp bild</label>
+            <input type="file" name="uploadPictureButton" id="uploadPictureButton" onchange="loadPicture(event)">
+            <img id="output" width="200" />	
+        </div>
+        <div id="amountandSizeDiv">
+            <div id="sizeDiv">
+                <label for="addSizeInput">Ange Storlek</label>
+                <input placeholder="bredd x höjd, i centimeter" id="addSizeInput" type="text">
+            </div>
+            <div id="amountDiv">
+                <label for="addAmountInput">Ange Antal</label>
+                <input id="addAmountInput" type="text">
+            </div>
+        </div>
+        <div id="addonDiv">
+            <label>Ange Tillval</label>
+            <div>
+                <div for="heatBackBox">
+                    <label for="heatBackBox">Värmebaksida + 0,15kr / cm</label>
+                    <input id="heatBackBox" type="checkbox" name="" id="">
+                </div>
+                <div>
+                    <label for="kardborreBox">Kardborre inkl. lös de + 0,3kr / cm</label>
+                    <input id="kardborreBox" type="checkbox" name="" id="">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="selfAttachBox">Självhäftande baksida + 0,15kr/cm</label>
+                    <input id="selfAttachBox" type="checkbox" name="" id="">
+                </div>
+                <div>
+                    <label for="specialThreadBox">Specialtråd guld/metallic + 15%</label>
+                    <input id="specialThreadBox" type="checkbox" name="" id="">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="wholeBrodyrBox">Helbrodyr + 15%</label>
+                    <input id="wholeBrodyrBox" type="checkbox" name="" id="">
+                </div>
+            </div>
+        </div>
+        <div id="shippingDiv">
+            <label for="shippingOption">Shipping option</label>
+            <select id="shippingOption" name="Shipping">
+                <option value="standard" selected>Standard ca 3 Veckor</option>
+                <option value="express">Express ca 2 Veckor + 500:-</option>
+                <option value="superExpress">Super Express, under 2 veckor + 1000:-</option>
+            </select>
+        </div>
+        <div id="contactInfoDiv">
+            <div id="firstNameDiv">
+                <label for="userFirstName">Förnamn</label>
+                <input id="userFirstName" type="text">
+            </div>
+            <div id="lastNameDiv">
+                <label for="userLastName">Efternamn</label>
+                <input id="userLastName" type="text">
+            </div>
+            <div id="adressDiv">
+                <label for="userAdress">Adress</label>
+                <input id="userAdress" type="text">
+            </div>
+            <div id="ortDiv">
+                <label for="userOrt">Ort</label>
+                <input id="userOrt" type="text">
+            </div>
+            <div id="postcodeDiv">
+                <label for="userPostcode">postnummer</label>
+                <input id="userPostcode" type="text">
+            </div>
+            <div id="emailDiv">
+                <label for="userEmail">E-post Adress</label>
+                <input id="userEmail" type="text">
+            </div>
+            <div id="mobileDiv">
+                <label for="userMobile">Mobil nummer</label>
+                <input id="userMobile" type="text">
+            </div>
+        </div>
+        <div id="extraInfoDiv">
+            <label for="extraInfo">Extra info</label>
+            <textarea name="extraInfo" id="extraInfo" cols="30" rows="10"></textarea>
+        </div>
+        <div id="buttonDiv">
+            <button onclick="sendInfo()" id="sendInfoButton">Färdigt</button>
+        </div>
+    </main>
+</body>
+</html>
