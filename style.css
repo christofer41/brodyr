@@ -127,6 +127,10 @@ main div {
     justify-content: center;
 }
 
+#diameterDiv {
+    display:none;
+}
+
 #contactInfoDiv div {
     display: flex;
     flex-direction: row;

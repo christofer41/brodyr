@@ -99,10 +99,22 @@
             <input type="file" name="uploadPictureButton" id="uploadPictureButton" onchange="loadPicture(event)">
             <img id="output" width="200" />	
         </div>
+        <form>
+            <input type="radio" name="colors" id="widthHeightRadio" onclick="changeSizeInput()" checked="true">Bredd/höjd<br>
+            <input type="radio" name="colors" id="diameterRadio" onclick="changeSizeInput()">Diameter
+          </form>          
         <div id="amountandSizeDiv">
             <div id="sizeDiv">
-                <label for="addSizeInput">Ange Storlek</label>
-                <input placeholder="bredd x höjd, i centimeter" id="addSizeInput" type="text">
+                <label for="widthInput">Bredd</label>
+                <input placeholder="Bredd i millimeter" id="widthInput" type="text">
+    
+                <label for="hightInput">Höjd</label>
+                <input placeholder="Höjd i millimeter" id="hightInput" type="text">
+            </div>
+
+            <div id="diameterDiv">
+                <label for="diameterInput">Diameter</label>
+                <input placeholder="Diameter" id="diameterInput" type="text">
             </div>
             <div id="amountDiv">
                 <label for="addAmountInput">Ange Antal</label>

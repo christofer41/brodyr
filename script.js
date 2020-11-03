@@ -47,20 +47,26 @@ let loadPicture = function(event) {
 
 
 function sendInfo() {
-	let theSize = document.getElementById("addSizeInput").value;
+	let widthAndHeight = document.getElementById("widthHeightRadio");
+	let diameter = document.getElementById("diameterInput").value;
+
+	let bredd = document.getElementById("widthInput").value;
+	let hojd = document.getElementById("hightInput").value;
+
 	let theAmount = document.getElementById("addAmountInput").value;
-
+	
 	let shippingOption = document.getElementById("shippingOption").value;
+	bredd = replaceComma(bredd);
+	hojd = replaceComma(hojd)
+	
+	let theSize = bredd + hojd;
+	theSize = theSize/2
+	console.log(theSize)
 
-	// let userFirstName = document.getElementById("userFirstName").value;
-	// let userLastName = document.getElementById("userLastName").value;
-	// let userAdress = document.getElementById("userAdress").value;
-	// let userOrt = document.getElementById("userOrt").value;
-	// let userPostcode = document.getElementById("userPostcode").value;
-	// let userEmail = document.getElementById("userEmail").value;
-	// let userMobile = document.getElementById("userMobile").value;
+	if (!widthAndHeight.checked) {
+		theSize = diameter;
+	}
 
-	theSize = convertToMM(theSize);
 
 	let priceOfSize = getPriceFromArray(theSize, theAmount);
 	let addonPrice = calculateAddons(priceOfSize);
@@ -76,21 +82,22 @@ function sendInfo() {
 
 	// alert(`the price is ${thePrice}:-`);
 
-	displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice, addonPrice, thePrice)
+	displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice, addonPrice, thePrice, bredd, hojd, diameter)
 }
 
-function convertToMM(size) {
-	// let sizeInMM = size.substring(0, size.length - 1);
-	let sizeInMM = size * 10;
-	sizeInMM = (Math.floor(sizeInMM / 10) * 10);
-	return sizeInMM;
+function replaceComma(size) {
+
+	let str = size.toString();
+	let sizeFixed = str.replace(/,/g, ".");	
+	console.log(sizeFixed)
+	return sizeFixed;
 }
 
 function getPriceFromArray(size, amount) {
 	let priceOfSize;
 
 	if (size < 40) {
-		alert("Numret måste vara högre än 4")
+		alert("Numret måste vara högre än 40")
 		priceOfSize = 0;
 	}
 	if (size == 40) {
@@ -210,9 +217,11 @@ function removePopup() {
 	document.getElementById("theOrderPopup").style.display = "none"
 }
 
-function displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice, addonPrice, thePrice) {
+function displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice, addonPrice, thePrice, bredd, hojd, diameter) {
 
 	document.getElementById("theOrderPopup").style.display = "flex"
+
+	let widthAndHeight = document.getElementById("widthHeightRadio");
 
 	let userFirstName = document.getElementById("userFirstName").value;
 	let userLastName = document.getElementById("userLastName").value;
@@ -223,7 +232,7 @@ function displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice,
 	let userMobile = document.getElementById("userMobile").value;
 
 
-	document.getElementById("sizeOutput").innerHTML = theSize + ":-";
+	document.getElementById("sizeOutput").innerHTML = "Bredd: " + bredd + ", " + "Höjd: " + hojd;
 	document.getElementById("amountOutput").innerHTML = theAmount + ":-";
 	document.getElementById("basepriceOutput").innerHTML = priceOfSize + ":-";
 	document.getElementById("delieveryPriceOutput").innerHTML = shippingPrice + ":-";
@@ -237,5 +246,25 @@ function displayTheResultInPopup(theSize, theAmount, priceOfSize, shippingPrice,
 	document.getElementById("emailOutput").innerHTML = userEmail;
 	document.getElementById("mobileOutput").innerHTML = userMobile;
 
+	if (!widthAndHeight.checked) {
+		document.getElementById("sizeOutput").innerHTML = "Diameter: " + diameter;
+	}
 
+}
+
+
+function changeSizeInput() {
+	let widthAndHeight = document.getElementById("widthHeightRadio");
+
+	let sizeDiv = document.getElementById("sizeDiv");
+	let diameterDiv = document.getElementById("diameterDiv");
+
+	if  (widthAndHeight.checked) {
+		sizeDiv.style.display = "flex"
+		diameterDiv.style.display = "none"
+	}
+	else {
+		sizeDiv.style.display = "none"
+		diameterDiv.style.display = "flex"
+	}
 }
